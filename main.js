@@ -8,16 +8,28 @@ class CellView{
     this.SIDES = 6;
   }
   
+  //https://p5js.org/examples/form-regular-polygon.html
+  polygon(x, y, radius, npoints){
+    var angle = TWO_PI / npoints;
+    beginShape();
+    for(var a = 0; a < TWO_PI; a += angle){
+      var sx = x + cos(a) * radius;
+      var sy = y + sin(a) * radius;
+      vertex(sx, sy);
+    }
+    endShape(CLOSE);
+  } 
+
   //draw mouseover detection map layer
   displayMap(){
     fill(this.mapColor);
-    polygon(this.x,this.y,this.r,this.SIDES); 
+    this.polygon(this.x,this.y,this.r,this.SIDES); 
   }
 
   //draw user viewable layer
   display(){
     fill(this.displayColor);
-    polygon(this.x,this.y,this.r,this.SIDES);
+    this.polygon(this.x,this.y,this.r,this.SIDES);
   }
 }
 
@@ -124,15 +136,3 @@ function mouseClicked(){
 }
 
 /*** ^ processing functions ^ ***/
-
-//https://p5js.org/examples/form-regular-polygon.html
-function polygon(x, y, radius, npoints){
-  var angle = TWO_PI / npoints;
-  beginShape();
-  for (var a = 0; a < TWO_PI; a += angle) {
-    var sx = x + cos(a) * radius;
-    var sy = y + sin(a) * radius;
-    vertex(sx, sy);
-  }
-  endShape(CLOSE);
-}
