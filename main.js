@@ -125,50 +125,6 @@ function mouseClicked(){
 
 /*** ^ processing functions ^ ***/
 
-
-
-//draw function for scale grid, relies on polygon() defined below.
-function makeScaleGrid(x,y,r){
-  const SIDES = 6;
-  const SPACING = 1.75;
-
-  push(); //preserve OG draw state
-
-  translate(x,y);
-  fill(255);
-  polygon(0,0,r,SIDES); //first poly used as ref point
-  
-  //colors for each cell
-  hexColor = [];
-  for(var i = 0; i < 8; i++){
-    hexColor.push((i*10) + 100);
-  }
-  
-  //lower cluster
-  for(var i = 7/6; i <= 13/6; i += 1/3){
-    push();
-    fill(hexColor.pop());//color the cell 
-    translate((SPACING*r)*cos( -(i) * PI),
-              (SPACING*r)*sin( -(i) * PI));
-    polygon(0,0,r,SIDES);
-    if(i < 13/6){ //keep draw point here for second cluster
-      pop();
-    }
-  }
-  //upper cluster
-  for(var i = 5/6; i > 1/6; i -= 1/3){
-    push();
-    fill(hexColor.pop());//color the cell 
-    translate((SPACING*r)*cos( -(i) * PI),
-              (SPACING*r)*sin( -(i) * PI));
-    polygon(0,0,r,SIDES);
-    pop();
-  }
-
-  pop();//restore draw state from first loop (last pop() in loop isn't called)
-  pop();//restore function draw state
-}
-
 //https://p5js.org/examples/form-regular-polygon.html
 function polygon(x, y, radius, npoints){
   var angle = TWO_PI / npoints;
