@@ -17,8 +17,6 @@ function setup() {
 function draw() {
   background(128);
   grid.display();
-  fill(0);
-  text(frameCount, mouseX,mouseY);
 }
 
 function mouseClicked(){
