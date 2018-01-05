@@ -6,7 +6,7 @@ main class for Comb project.
 
 let mouseWasClicked = false; //event switch
 
-let grid;
+let grid;//a cellGrid
 
 function setup() {
   createCanvas(720,480);

@@ -84,7 +84,8 @@ class CellController{
   eventClickedMouseOver(){
     if(mouseIsPressed && red(get(mouseX,mouseY)) == red(this.cellView.mapColor)){
       this.cellView.displayColor = 'BLACK';
-      print(this.cellNumber);//print the current cell number
+      print(this.cellNumber /*,": ", red(get(mouseX,mouseY))*/);//print the current cell number
+      //print(red(get(mouseX,mouseY)));//print the color the mouse is sampling
     }else{
       this.cellView.displayColor = 'WHITE';
     }
