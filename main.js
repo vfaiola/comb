@@ -1,3 +1,5 @@
+let numberOfCells = 0;
+
 class CellView{
   constructor(x,y,r,c,mapCol){
     this.x = x;//coords
@@ -36,12 +38,15 @@ class CellView{
 class CellController{
   constructor(v,m){
     this.cellView = v;
-    this.cellModel = m; 
+    this.cellModel = m;
+    this.cellNumber = numberOfCells;
+    numberOfCells++; 
   }
 
   eventClickedMouseOver(){
     if(mouseIsPressed && red(get(mouseX,mouseY)) == red(this.cellView.mapColor)){
       this.cellView.displayColor = 'BLACK';
+      print(this.cellNumber);
     }else{
       this.cellView.displayColor = 'WHITE';
     }
@@ -109,8 +114,10 @@ class CellGrid{
   }
 
   display(){
+    push();
     translate(this.x,this.y);//put the grid where it's at
     this.cells.map(cell => cell.display());
+    pop();
   }
 }
 
@@ -124,11 +131,14 @@ let grid;
 function setup() {
   createCanvas(720,480);
   grid = new CellGrid(width/2,height/2,30);
+  textSize(30);
 }
 
 function draw() {
   background(128);
   grid.display();
+  fill(0);
+  text(frameCount, mouseX,mouseY);
 }
 
 function mouseClicked(){
