@@ -5,15 +5,13 @@ meant to function as the basic button class, particularly for the main chord gri
 HOW MOUSEOVER DETECTION WORKS:
 this class detects mouseovers with a "map" color on each shape, which is displayed before the
 user viewable display color. This color is checked against the color under the mouse when the 
-mouse is pressed (mouseIsPressed boolean check). Because of the way the drawing/event checking is ordered,  
-the map color doesn't actually matter, or need to be unique to individual cells. In the code's current state
-it's just white. Currently this will NOT WORK if the background also happens to be the same color as the map.
-
-It's worth noting that I didn't expect the behavior in the class' current state. It works accidentally,
-and I'm not 100% sure how at the moment. I thought that map should have to be unique for each cell,
-but that is apperantly not so. A clue may lie in setting the background the same as the map color.
-doing so results in something like the behavior I expected. It may have to do with the background drawing
-before anything else? 
+mouse is pressed (mouseIsPressed boolean check). The acutal map color doesn't matter, as long as
+it a) isn't the same color as the background, and b) the display color of the clicked button changes
+when it is clicked. This is because the event checking is done during the Cell's display stage, 
+between the mapDisplay and the user display. Effectivly a "Just In Time" event check. Cells drawn earlier
+see the mouse as hovering over the background color. Cells drawn later see the mouse as hovering over the 
+user displayable color. In this way, each button can detect mouse-over without having to be assigned 
+unique map colors, nor some elaborite coordinate range/distance formula system.    
 
 CAN:
 -display basic shape with fill color
@@ -84,8 +82,7 @@ class CellController{
   eventClickedMouseOver(){
     if(mouseIsPressed && red(get(mouseX,mouseY)) == red(this.cellView.mapColor)){
       this.cellView.displayColor = 'BLACK';
-      print(this.cellNumber /*,": ", red(get(mouseX,mouseY))*/);//print the current cell number
-      //print(red(get(mouseX,mouseY)));//print the color the mouse is sampling
+      print(this.cellNumber);//print the current cell number
     }else{
       this.cellView.displayColor = 'WHITE';
     }
