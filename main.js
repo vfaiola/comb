@@ -1,9 +1,9 @@
 //non displayable. holds data about chord. part of cell model.
 //interface this with audio engine?
 class Chord{
-  constructor(rootN, type, extension){
+  constructor(rootN, quality, extension){
     this.rootN = rootN;//A,B,C...
-    this.type = type;//minor/Major...
+    this.quality = quality;//Maj/min/aug/dim
     this.extension = extension;//7th, 9th...
   }
 

@@ -69,6 +69,7 @@ class CellView{
     fill(this.displayColor);
     this.polygon(this.x,this.y,this.r,this.SIDES);
     fill(0);
+    textAlign(CENTER);
     text(this.cellText,this.x,this.y);
   }
 }
@@ -103,7 +104,7 @@ class CellController{
 //       ?? appropriate display colors for the chord ??
 class CellModel{ //currently not implemented!
   constructor(){
-    this.data = "this is placeholder data";
+    this.data = "this is placeholder data°";
   }
 }
 
