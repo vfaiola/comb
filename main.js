@@ -1,22 +1,21 @@
 /*
-main class for Comb project.
+main for Comb project.
 */
 
 /***  processing functions ***/
 
 let mouseWasClicked = false; //event switch
 
-let grid;//a cellGrid
+//let grid;//a cellGrid
+let screen1;
 
 function setup() {
   createCanvas(720,480);
-  grid = new CellGrid(width/2,height/2,30);
-  textSize(30);
+  screen1 = new Screen(128, [(new CellGrid(width/2,height/2,30))]);
 }
 
 function draw() {
-  background(128);
-  grid.display();
+  screen1.display();
 }
 
 function mouseClicked(){
