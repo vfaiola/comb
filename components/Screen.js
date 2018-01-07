@@ -5,7 +5,7 @@ to use.
 
 it's required that all displayableObjects have to have a display() method
 
-@example:
+example:
 
 let screen1 = new Screen(128, [(new CellGrid(width/2,height/2,30))]);
 screen1.display();

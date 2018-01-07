@@ -38,6 +38,9 @@ class CellView{
     this.x = x;//coords
     this.y = y;
     this.r = r;//radius
+
+    this.cellText = '';//text to display in a cell
+
     this.mapColor = mapCol;//this is the hit map color to detect mouseover events
     this.displayColor = c;//this is the color that the user sees. 
     this.SIDES = 6;
@@ -65,6 +68,8 @@ class CellView{
   display(){
     fill(this.displayColor);
     this.polygon(this.x,this.y,this.r,this.SIDES);
+    fill(0);
+    text(this.cellText,this.x,this.y);
   }
 }
 
@@ -75,6 +80,10 @@ class CellController{
   constructor(v,m){
     this.cellView = v;
     this.cellModel = m;
+    this.cellData = this.cellModel.data;
+
+    this.cellView.cellText = this.cellModel.data;//text to display in a cell
+
     this.cellNumber = numberOfCells;//cellNumber is a global variable to keep # of cells
     numberOfCells++; 
   }
@@ -93,6 +102,9 @@ class CellController{
 //       to audio engine to play appropriate notes. 
 //       ?? appropriate display colors for the chord ??
 class CellModel{ //currently not implemented!
+  constructor(){
+    this.data = "this is placeholder data";
+  }
 }
 
 //wrapper class for cell components
