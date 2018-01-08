@@ -51,8 +51,8 @@ class CellView{
     var angle = TWO_PI / npoints;
     beginShape();
     for(var a = 0; a < TWO_PI; a += angle){
-      var sx = x + cos(a) * radius;
-      var sy = y + sin(a) * radius;
+      var sx = x + Math.cos(a) * radius;
+      var sy = y + Math.sin(a) * radius;
       vertex(sx, sy);
     }
     endShape(CLOSE);
@@ -69,10 +69,13 @@ class CellView{
     fill(this.displayColor);
     this.polygon(this.x,this.y,this.r,this.SIDES);
     fill(0);
+    textFont('Verdana');
+    textSize(this.r / 2.5);
     textAlign(CENTER);
-    text(this.cellText,this.x,this.y);
+    text(this.cellText,this.x,this.y + (this.r / 7));
   }
 }
+
 
 //controller: monitors button for events and updates appropriately
 //            eg: when a button is pressed it must both notify the view to alter display
@@ -83,7 +86,7 @@ class CellController{
     this.cellModel = m;
     this.cellData = this.cellModel.data;
 
-    this.cellView.cellText = this.cellModel.data;//text to display in a cell
+    this.cellView.cellText = this.cellModel.chord.name;//text to display in a cell
 
     this.cellNumber = numberOfCells;//cellNumber is a global variable to keep # of cells
     numberOfCells++; 
@@ -92,28 +95,30 @@ class CellController{
   eventClickedMouseOver(){
     if(mouseIsPressed && red(get(mouseX,mouseY)) == red(this.cellView.mapColor)){
       this.cellView.displayColor = 'BLACK';
-      print(this.cellNumber);//print the current cell number
+      console.log(this.cellNumber);//print the current cell number
     }else{
       this.cellView.displayColor = 'WHITE';
     }
   }
 }
 
+
 //model: responsible for knowing the name of the chord, notes of the chord, calling out 
 //       to audio engine to play appropriate notes. 
 //       ?? appropriate display colors for the chord ??
 class CellModel{ //currently not implemented!
-  constructor(){
-    this.data = "this is placeholder data°";
+  constructor(chord){
+    this.chord = chord;
   }
 }
+
 
 //wrapper class for cell components
 //functions as a public API object in order to hide MVC implimentation
 class Cell{
-  constructor(x,y,r,c,mapCol){
+  constructor(x,y,r,c,mapCol,chord){
     this.cellView = new CellView(x,y,r,c,(mapCol == null ? 'WHITE' : mapCol));
-    this.cellModel = new CellModel();
+    this.cellModel = new CellModel(chord ? chord : (new Chord("C","","")));
     this.cellController = new CellController(this.cellView,this.cellModel);
   }
 

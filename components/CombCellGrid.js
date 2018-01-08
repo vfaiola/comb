@@ -28,8 +28,8 @@ class CellGrid{
     tempArray.push(new Cell(0,0,this.cellSize,'WHITE'));//center poly
     //lower cluster
     for(var i = 7/6; i <= 13/6; i += 1/3){
-      tempArray.push(new Cell((this.SPACING*this.cellSize)*cos( -(i) * PI),
-                              (this.SPACING*this.cellSize)*sin( -(i) * PI),
+      tempArray.push(new Cell((this.SPACING*this.cellSize)*Math.cos( -(i) * PI),
+                              (this.SPACING*this.cellSize)*Math.sin( -(i) * PI),
                                this.cellSize,
                                'WHITE'));
     }
@@ -38,8 +38,8 @@ class CellGrid{
     let transY = (this.SPACING*this.cellSize)*sin(11/6 * PI);
     //upper cluster
     for(var i = 5/6; i > 1/6; i -= 1/3){
-      tempArray.push(new Cell((this.SPACING*this.cellSize)*cos( -(i) * PI)+transX,
-                              (this.SPACING*this.cellSize)*sin( -(i) * PI)+transY,
+      tempArray.push(new Cell((this.SPACING*this.cellSize)*Math.cos( -(i) * PI)+transX,
+                              (this.SPACING*this.cellSize)*Math.sin( -(i) * PI)+transY,
                                this.cellSize,
                                'WHITE'));
     }
