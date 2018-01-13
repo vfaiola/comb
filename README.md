@@ -1,37 +1,27 @@
 # comb
 
-Comb is meant to be a web application for composing chord progressions.   
+Comb is a web application for composing chord progressions built with the P5.js library. Currently the project is just a skeleton, and doesn't do anything useful yet.
 
-Plan:
-SCREENS:
--MAIN
--CHORD EDITOR
--SONG PALLET (?? thinking a list of progressions built from the main screen ??)
--SAVE/EXPORT (no clue how this is going to work)
+# screens
+### main grid
+a grid of hexagons representing every chord in each key.
 
+### chord buffer (planned)
+as one plays the main grid, a buffer which temporarily saves played chords. Helps to build progressions
 
-<b>MAIN SCREEN</b>:
-  -a grid of hex cells drawn across the screen, each representing a chord
-  -a memory buffer of chords played on that screen 
-  -chords in the memory buffer should have a subscreen (accessable how?) <b>CHORD EDITOR</b>.
-    -editing chords:
-      The chord editor should allow the individual notes of the chord to be edited by adding/subtracting notes, sharping/flatting,
-      and transposing by octave.
-    -justification for the memory buffer:
-      -Just jumping around the grid it can be difficult to remember recently played progressions
-      -The main chord grid will already be big without adding the chord variations/extensions etc. The buffer will serve as a place to
-       edit individual chords seperate from the main grid.
-      -editing the main grid for chord variations isn't likely to be a good option. It would be difficult to go back and forth between,
-       for example, a maj and maj7.
-      -the buffer should allow a quick way to try out new progressions without having to remember where you were on the grid.
-   -memory buffer should have some way to "lock in" chords/progressions so that they do not fall off the buffer.
-   -chords should be playable from the memory buffer.
-   -locked in chords/progressions should be transferable to a "song pallet" screen (or something?)
-   
-   <b>CHORD EDITOR</b>
-   -subscreen accessed through the chords in the memory buffer
-   -defaults to the notes of the chord from the big grid
-   -notes can be added or removed (for 7ths, ommits etc)
-   -notes can be sharped or flatted
-   -notes can be transposed by octave
-   -if possible: additional octave notes can be added for extra voicing options
+### chord editor (planned)
+an interface to edit any given chord saved to a progression.
+
+### progression editor (planned)
+an interface to edit progressions to build songs
+
+### synth editor (planned)
+an interface to edit the synth/sampler. Controls volume, ADSR, filter, sample.
+
+### save/export (planned)
+save state of instrument. export progressions as midi files.
+
+# installation
+
+Simply clone the repo as it is. All the needed libraries are already there
+
