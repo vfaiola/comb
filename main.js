@@ -77,7 +77,7 @@ let screens = [];
 function setup() {
   frameRate(30);
   createCanvas(1440,900);
-  screens[0] = new Screen(128, [(new CellGrid(width/2,height/2,30,'E')), /*(new CellGrid(width/6,height/6,30))*/ ]); //main grid
+  screens[0] = new Screen(128, [(new CellGrid(width/2,height/2,30,'G# ')), /*(new CellGrid(width/6,height/6,30))*/ ]); //main grid
   //screens[1] = new Screen(128, [(new Cell(width/2,height/2,100,255,255,(new Chord("D", "min", "7"))))]); //playin' around screen
 }
 
