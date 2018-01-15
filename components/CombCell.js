@@ -34,7 +34,7 @@ let numberOfCells = 0;
 //view: responsible for displayable tasks ie drawing to the canvas
 //displayable tasks include user-viewable and non-user-viewable (mouseover map display)
 class CellView{
-  constructor(x,y,r,c,mapCol){
+  constructor(x,y,r,displayColor,mapCol){
     this.x = x;//coords
     this.y = y;
     this.r = r;//radius
@@ -42,7 +42,7 @@ class CellView{
     this.cellText = '';//text to display in a cell
 
     this.mapColor = mapCol;//this is the hit map color to detect mouseover events
-    this.displayColor = c;//this is the color that the user sees. 
+    this.displayColor = displayColor;//this is the color that the user sees. 
     this.SIDES = 6;
   }
   
@@ -86,7 +86,7 @@ class CellController{
     this.cellModel = m;
     this.cellData = this.cellModel.data;
 
-    this.cellView.cellText = this.cellModel.chord.name;//text to display in a cell
+    this.cellView.cellText = this.cellModel.chord;//text to display in a cell
 
     this.cellNumber = numberOfCells;//cellNumber is a global variable to keep # of cells
     numberOfCells++; 
@@ -116,9 +116,9 @@ class CellModel{ //currently not implemented!
 //wrapper class for cell components
 //functions as a public API object in order to hide MVC implimentation
 class Cell{
-  constructor(x,y,r,c,mapCol,chord){
-    this.cellView = new CellView(x,y,r,c,(mapCol == null ? 'WHITE' : mapCol));
-    this.cellModel = new CellModel(chord ? chord : (new Chord("C","","")));
+  constructor(x,y,r,displayColor,mapCol,chord){
+    this.cellView = new CellView(x,y,r,displayColor,(mapCol == null ? 'WHITE' : mapCol));
+    this.cellModel = new CellModel(chord);
     this.cellController = new CellController(this.cellView,this.cellModel);
   }
 
