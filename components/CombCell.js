@@ -86,7 +86,7 @@ class CellController{
     this.cellModel = m;
     this.cellData = this.cellModel.data;
 
-    this.cellView.cellText = this.cellModel.chord;//text to display in a cell
+    this.cellView.cellText = this.cellModel.chord.rootLetter;//text to display in a cell
 
     this.cellNumber = numberOfCells;//cellNumber is a global variable to keep # of cells
     numberOfCells++; 

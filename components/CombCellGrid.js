@@ -42,7 +42,7 @@ class CellGrid{
                             this.cellSize,
                             'WHITE',                                           // display color
                             null,                                              //map color
-                            keys[(keyIndex + offsets.pop()) % keys.length ])); //assign a chord to the cell
+                            new Chord(keys[(keyIndex + offsets.pop()) % keys.length ]))); //assign a chord to the cell
     
     //lower cluster
     for(var i = 7/6; i <= 13/6; i += 1/3){
@@ -52,7 +52,7 @@ class CellGrid{
                               this.cellSize,
                               'WHITE',
                               null,
-                              keys[(keyIndex + offsets.pop() ) % keys.length  ])) ;
+                              new Chord(keys[(keyIndex + offsets.pop()) % keys.length]))) ;
     }
     //"translate" variables for upper cluster
     let transX = (this.SPACING*this.cellSize)*cos(11/6 * PI);
@@ -65,7 +65,7 @@ class CellGrid{
                                this.cellSize,
                                'WHITE',
                                null,
-                              keys[(keyIndex + offsets.pop() ) % keys.length  ]));
+                              new Chord(keys[(keyIndex + offsets.pop() ) % keys.length  ])  ));
     }
 
     return tempArray;
