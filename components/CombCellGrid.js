@@ -22,45 +22,73 @@ class CellGrid{
     this.SPACING = 1.75;
     this.key = key;
     this.cellSize = cellSize;
+    
+
+    //these variables are used to assign chords to cells based on key
+    this.keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
+    this.keyIndex = this.keys.findIndex(x => x == this.key);
+    this.offsets = [11,2,5,4,9,0,11,7];//intervals in reverse order
+    this.quals   = ['m','m','','m','m','','m','']; // empties used to represent major chords 
+                                                  //FIRST & 2ND TO LAST SHOULD BE DIM, but dim isn't implimented yet
     this.cells = this.makeCells();
   }
   
+  _buildChord(){
+    return new Chord(
+                    this.keys[(this.keyIndex + this.offsets.pop()) % this.keys.length],
+                    this.quals.pop(),
+                    (new Synth()));
+  }
+
+  _buildCell(cellX,cellY){
+      return new Cell(
+                    cellX,
+                    cellY,
+                    this.cellSize,
+                    'WHITE',
+                    null,
+                    this._buildChord());
+    }
+
   makeCells(startX, startY){
     let tempArray = [];   
     const SIDES = 6;
 
+    // //center poly
+    // tempArray.push(new Cell(
+    //                         0,                                                 // x coord
+    //                         0,                                                 // y coord
+    //                         this.cellSize,
+    //                         'WHITE',                                           // display color
+    //                         null,                                              // map color
+    //                         new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
+    //                                   quals.pop(),
+    //                                   (new Synth())))) ; 
+    
+
     //these variables are used to assign chords to cells based on key
     let keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
-    let keyIndex = keys.findIndex(x => x == this.key);
+    let keyIndex = this.keys.findIndex(x => x == this.key);
     let offsets = [11,2,5,4,9,0,11,7];//intervals in reverse order
     let quals   = ['m','m','','m','m','','m','']; // empties used to represent major chords 
                                                   //FIRST & 2ND TO LAST SHOULD BE DIM, but dim isn't implimented yet
 
-    function buildCell(cellX, cellY){
-      return (
-        new Cell(
-          cellX,
-          cellY,
-          this.cellSize,
-          null,
-          new Chord(
-            keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
-                                      quals.pop(),
-                                      (new Synth()))));
+    
+    function buildCell(o,cellX,cellY){
+      return new Cell(
+                  cellX,
+                  cellY,
+                  o.cellSize,
+                  'WHITE',
+                  null,
+                  new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
+                                       quals.pop(),
+                                       (new Synth())));
     }
 
+    tempArray.push(buildCell(this,0,0));
+    print(tempArray);
 
-    //center poly
-    tempArray.push(new Cell(
-                            0,                                                 // x coord
-                            0,                                                 // y coord
-                            this.cellSize,
-                            'WHITE',                                           // display color
-                            null,                                              // map color
-                            new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
-                                      quals.pop(),
-                                      (new Synth())))) ; 
-    
     //lower cluster
     for(var i = 7/6; i <= 13/6; i += 1/3){
       tempArray.push(new Cell(
