@@ -23,8 +23,6 @@ class CellGrid{
     this.cells = this.makeCells();
   }
   
-  
-
   makeCells(startX, startY){
     let tempArray = [];   
     const SIDES = 6;
@@ -33,22 +31,9 @@ class CellGrid{
     let keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
     let keyIndex = keys.findIndex(x => x == this.key);
     let offsets = [11,2,5,4,9,0,11,7];//intervals in reverse order
-    let quals   = ['m','m','','m','m','','m','']; // empties used to represent major chords 
+    let quals   = ['m','m','','m','m','','m','']; //empties used to represent major chords 
                                                   //FIRST & 2ND TO LAST SHOULD BE DIM, but dim isn't implimented yet
     
-    _buildCell(cellX, cellY){
-    return new Cell(
-      cellX,
-      cellY,
-      this.cellSize,
-      new Chord(
-        keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
-        quals.pop(),
-        (new Synth())));
-  }
-
-
-<<<<<<< HEAD
     function buildCell(o,cellX,cellY){
       return new Cell(
                   cellX,
@@ -58,16 +43,11 @@ class CellGrid{
                   null,
                   new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
                                        quals.pop(),
-                                       new Synth() ));
+                                       new Synth()));
     }
 
     tempArray.push(buildCell(this,0,0));
-
-=======
-    //center poly
-    tempArray.push(this._buildCell(0,0));
     
->>>>>>> master
     //lower cluster
     for(var i = 7/6; i <= 13/6; i += 1/3){
       tempArray.push(buildCell(
@@ -77,16 +57,10 @@ class CellGrid{
     }
     
     //"translate" variables for upper cluster
-<<<<<<< HEAD
     let transX = (this.SPACING*this.cellSize)*Math.cos(11/6 * PI);
-    let transY = (this.SPACING*this.cellSize)*Math.sin(11/6 * PI); 
-=======
-    let transX = (this.SPACING*this.cellSize)*cos(11/6 * PI);
-    let transY = (this.SPACING*this.cellSize)*sin(11/6 * PI); 
+    let transY = (this.SPACING*this.cellSize)*Math.sin(11/6 * PI);  
     
->>>>>>> master
-    //upper cluster
-    
+    //upper cluster    
     for(var i = 5/6; i > 1/6; i -= 1/3){ 
       tempArray.push(buildCell(
         this,
