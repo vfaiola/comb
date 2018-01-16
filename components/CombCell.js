@@ -2,6 +2,7 @@
 Class for Comb hex cells
 meant to function as the basic button class, particularly for the main chord grid.
 
+NOTE: this mouseover detection is ULTRA SLOW PERFORMANCE and needs to be replaced.
 HOW MOUSEOVER DETECTION WORKS:
 this class detects mouseovers with a "map" color on each shape, which is displayed before the
 user viewable display color. This color is checked against the color under the mouse when the 
@@ -76,8 +77,8 @@ class CellView{
 
 
 //controller: monitors button for events and updates appropriately
-//            eg: when a button is pressed it must both notify the view to alter display
-//                and model to signal the audio engine
+//eg: when a button is pressed it must both notify the view to alter display
+//and model to signal the audio engine
 class CellController{
   constructor(v,m){
     this.cellView = v;
@@ -99,8 +100,9 @@ class CellController{
 }
 
 
-//model: responsible for knowing the name of the chord, notes of the chord, calling out 
-//to audio engine to play appropriate notes. 
+//model: currently responsible for holding a chord object to interface the cell
+//with the back end. Chords have letters, qualities, and currently hold synth objects.
+//in the future, they will have to carry a reference to a global synth object. 
 class CellModel{
   constructor(chord){
     this.chord = chord;
