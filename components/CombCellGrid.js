@@ -34,25 +34,31 @@ class CellGrid{
     let keyIndex = keys.findIndex(x => x == this.key);
     print(keyIndex);
     let offsets = [11,2,5,4,9,0,11,7];//intervals in reverse order
-    
+    let quals   = ['m','m','','m','m','','m','']; // empties used to represent major chords 
+                                                  //FIRST & 2ND TO LAST SHOULD BE DIM, but dim isn't implimented yet
+
     //center poly
     tempArray.push(new Cell(
                             0,                                                 // x coord
-                            0,                                                 //y coord
+                            0,                                                 // y coord
                             this.cellSize,
                             'WHITE',                                           // display color
-                            null,                                              //map color
-                            new Chord(keys[(keyIndex + offsets.pop()) % keys.length ]))); //assign a chord to the cell
+                            null,                                              // map color
+                            new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
+                                      quals.pop(),
+                                      (new Synth())))) ; 
     
     //lower cluster
     for(var i = 7/6; i <= 13/6; i += 1/3){
       tempArray.push(new Cell(
                               (this.SPACING*this.cellSize)*Math.cos( -(i) * PI),
                               (this.SPACING*this.cellSize)*Math.sin( -(i) * PI),
-                              this.cellSize,
+                               this.cellSize,
                               'WHITE',
-                              null,
-                              new Chord(keys[(keyIndex + offsets.pop()) % keys.length]))) ;
+                               null,
+                               new Chord(keys[(keyIndex + offsets.pop()) % keys.length],
+                                         quals.pop(),
+                                         (new Synth()))));
     }
     //"translate" variables for upper cluster
     let transX = (this.SPACING*this.cellSize)*cos(11/6 * PI);
@@ -63,9 +69,11 @@ class CellGrid{
                               (this.SPACING*this.cellSize)*Math.cos( -(i) * PI)+transX,
                               (this.SPACING*this.cellSize)*Math.sin( -(i) * PI)+transY,
                                this.cellSize,
-                               'WHITE',
+                              'WHITE',
                                null,
-                              new Chord(keys[(keyIndex + offsets.pop() ) % keys.length  ])  ));
+                               new Chord(keys[(keyIndex + offsets.pop() ) % keys.length],
+                                         quals.pop(),
+                                         (new Synth()))));;
     }
 
     return tempArray;

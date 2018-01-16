@@ -17,10 +17,10 @@ Cell model class.
 */ 
 class Chord{
   constructor(root,qual,synth){
-    this.rootLetter = root;
-    this.root = octave[root];
-    this.qual = qual;
-    this.third = (this.qual == "min" ? this.root + 3 : this.root + 4);
+    this.root = root;
+    this.rootMidiNote = octave[root];
+    this.qual = (qual == null ? '' : qual);
+    this.third = (this.qual == "m" ? this.rootMidiNote + 3 : this.root + 4);
     this.fifth = this.root + 7;
     this.synth = synth;    
   }
