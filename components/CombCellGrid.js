@@ -32,10 +32,23 @@ class CellGrid{
     //these variables are used to assign chords to cells based on key
     let keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
     let keyIndex = keys.findIndex(x => x == this.key);
-    print(keyIndex);
     let offsets = [11,2,5,4,9,0,11,7];//intervals in reverse order
     let quals   = ['m','m','','m','m','','m','']; // empties used to represent major chords 
                                                   //FIRST & 2ND TO LAST SHOULD BE DIM, but dim isn't implimented yet
+
+    function buildCell(cellX, cellY){
+      return (
+        new Cell(
+          cellX,
+          cellY,
+          this.cellSize,
+          null,
+          new Chord(
+            keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
+                                      quals.pop(),
+                                      (new Synth()))));
+    }
+
 
     //center poly
     tempArray.push(new Cell(
