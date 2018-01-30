@@ -12,7 +12,8 @@ when it is clicked. This is because the event checking is done during the Cell's
 between the mapDisplay and the user display. Effectivly a "Just In Time" event check. Cells drawn earlier
 see the mouse as hovering over the background color. Cells drawn later see the mouse as hovering over the 
 user displayable color. In this way, each button can detect mouse-over without having to be assigned 
-unique map colors, nor some elaborite coordinate range/distance formula system.    
+unique map colors, nor some elaborite coordinate range/distance formula system. I've started calling this the
+"Duckhunt" pattern.
 
 CAN:
 -display basic shape with fill color
@@ -20,9 +21,8 @@ CAN:
 -keep track of how many cells their are, and each cell is numbered in draw order currently
 -be used publicly without exposing implementation
 CAN'T:
--do anything outside of itself
--model components are totally unimplemented
--display anything other than a shape with a fill color
+-model components are mostly unimplemented
+-play chords yet
 
 DEPENDS ON:
 p5.js
