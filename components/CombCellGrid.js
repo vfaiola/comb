@@ -1,5 +1,5 @@
 /*
-collection of cells into a grid (protype for a key).
+collection of cells into a grid.
 The central lower cluster cell is the initial draw point for the grid.
 Is polite enough to return the draw point to where it was before the shape was
 
@@ -8,7 +8,7 @@ CAN:
 -assign chords to cells (currently just strings rather than actual chord objects)
 
 CAN'T:
--do anything useful yet
+-do much yet
 
 DEPENDS ON: CombCell.js
 */
@@ -53,20 +53,22 @@ class CellGrid{
                                        new Synth()));
     }
 
-    tempArray.push(buildCell(this,0,0)); //center cell
     
+    /* below is the code to generate the grid from cells... */
+    /* INVOLVES TRIG, so edit at your own risk. */
+   
+    
+    tempArray.push(buildCell(this,0,0)); //center cell
     //lower cluster. fancy fractions are for the internal trig junk
     for(var i = 7/6; i <= 13/6; i += 1/3){
       tempArray.push(buildCell(
         this,
         (this.SPACING*this.cellSize)*cos( -(i) * PI),
         (this.SPACING*this.cellSize)*sin( -(i) * PI)));
-    }
-    
+    } 
     //"translate" variables for upper cluster by adding these variables to the coords
     let transX = (this.SPACING*this.cellSize)*Math.cos(11/6 * PI);
     let transY = (this.SPACING*this.cellSize)*Math.sin(11/6 * PI);  
-    
     //upper cluster. fancy fractions are for the internal trig junk    
     for(var i = 5/6; i > 1/6; i -= 1/3){ 
       tempArray.push(buildCell(
