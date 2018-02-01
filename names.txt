@@ -5,3 +5,6 @@ add your name to this list and then make a pull request!
 
 
 - Victor Faiola
+-Adam Stomberg
+-Eduardo Veras Martinez
+
