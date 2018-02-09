@@ -90,7 +90,8 @@ class CellController{
   }
 
   eventClickedMouseOver(){
-    if(mouseIsPressed && red(get(mouseX,mouseY)) == red(this.cellView.mapColor)){
+    if(mouseIsPressed && red( colorUnderMouse() /* get(mouseX, mouseY)*/ ) == red(this.cellView.mapColor)){
+      console.log("event triggered!");
       this.cellView.displayColor = 'BLACK';
       console.log(this.cellNumber);//print the current cell number
     }else{
@@ -119,9 +120,13 @@ class Cell{
     this.cellController = new CellController(this.cellView,this.cellModel);
   }
 
+  displayMap(){
+    this.cellView.displayMap();//non-user-viewable mouseover detection layer
+  }
+
   display(){
     this.cellView.displayMap();//non-user-viewable mouseover detection layer
     this.cellController.eventClickedMouseOver();//controller event check
-    this.cellView.display();//user-viewable
+    //this.cellView.display();//user-viewable
   }
 }
