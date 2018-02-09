@@ -40,7 +40,7 @@ class CellView{
     this.y = y;
     this.r = r;//radius
     this.cellText = '';//text to display in a cell
-    this.mapColor = mapCol;//this is the hit map color to detect mouseover events
+    this.mapColor = red(numberOfCells);//this is the hit map color to detect mouseover events
     this.displayColor = displayColor;//this is the color that the user sees. 
     this.SIDES = 6;
   }
