@@ -1,1 +1,6 @@
-this sentence is false.
+thisSentenceIsFalse = false;
+
+
+if(pullRequest.isAccepted()){
+  thisSentenceIsFalse = true;
+}
