@@ -17,6 +17,11 @@ class Screen{
     this.displayableObjects = displayableObjects;
   }
 
+  displayMap(){
+    background(this.BACKGROUND);
+    this.displayableObjects.map(o => o.displayMap());
+  }
+
   display(){
     background(this.BACKGROUND);
     this.displayableObjects.map(o => o.display());

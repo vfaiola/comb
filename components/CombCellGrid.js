@@ -80,6 +80,11 @@ class CellGrid{
     return tempArray;
   }
 
+  displayMap(){
+    translate(this.x,this.y);//put the grid where it's at
+    this.cells.map(cell => cell.displayMap());
+  }
+
   //are push()/pop() needed here?
   display(){
     //push();
